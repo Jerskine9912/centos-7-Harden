@@ -26,7 +26,7 @@ sleep 3
 echo
 echo '=============================================================='
 echo
-echo 'First, lets create you a sudo user, so we can stop using root!'
+echo 'First, let's create you a sudo user, so we can stop using root!'
 echo
 sleep 3
 if [ $(id -u) -eq 0 ]; then
@@ -52,9 +52,11 @@ else
         exit 2
 fi
 echo
-echo '============================================================='
+echo '=============================================================='
 echo
 echo 'Now, let me bring your system up to date and configure automatic updates...'
+echo
+echo 'This may take several minutes, do NOT cancel this process...'
 echo
 sleep 5
 yum -y -q install epel-release
@@ -107,4 +109,13 @@ echo "          username: $username"
 echo "          password: $password"
 echo "          port number: $ssh"
 echo
+echo "If you accidentally ban your IP through multiple failed login attempts, you'll need to run the below via console:"
+echo "          fail2ban-client set sshd unbanip your.ip.address.here"
+echo
+sleep 3
+echo "Thanks for using Matt's lockdown script!"
+echo
+echo "May your server ever go unhacked.."
+echo "          - Matt"
+echop
 sleep 10
