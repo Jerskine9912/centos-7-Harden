@@ -89,7 +89,7 @@ systemctl restart sshd
 echo
 echo '=============================================================='
 echo
-echo "Almost done, now I'll install and configure Fail2Ban to protect your SSH port number from brute-force attacks."
+echo "Getting there, now I'll install and configure Fail2Ban to protect your SSH port number from brute-force attacks."
 echo
 sleep 5
 yum install fail2ban -y -q
@@ -117,7 +117,7 @@ echo
 echo 'This may take several minutes, do NOT cancel this process...'
 echo
 # ClamAV install
-yum -y install clamav-server clamav-data clamav-update clamav-filesystem clamav clamav-scanner-systemd clamav-devel clamav-lib clamav-server-systemd
+yum -y -q install clamav-server clamav-data clamav-update clamav-filesystem clamav clamav-scanner-systemd clamav-devel clamav-lib clamav-server-systemd
 setsebool -P antivirus_can_scan_system 1
 setsebool -P clamd_use_jit 1
 sed -i -e "s/^Example/#Example/" /etc/clamd.d/scan.conf
