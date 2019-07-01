@@ -18,7 +18,7 @@ sleep 1
 echo "          - Disable root SSH login"
 echo
 sleep 2
-echo "IMPORTANT - The use of this script does not in any way gaurantee the security of your server, it simply automates the hardening of it."
+echo "IMPORTANT - The use of this script does not in any way guarantee the security of your server, it simply automates the hardening of it."
 echo "Passwords provided should be complex, updated regularly and never shared - key-based access is even more secure, and advised."
 echo
 sleep 4
