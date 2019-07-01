@@ -1,5 +1,5 @@
 # lockdown
-# This script is to automate the hardening of CentOS servers, in such a way as to drastically decrease manual sysadmin time
+# This script automates the hardening of CentOS servers, in such a way as to drastically decrease manual sysadmin time
 # and allow non-technical users to implement sound, even if not complete, security of their servers.
 
 # I appreciate any and all feature requests, submit them and I will actively work to incorporate those features.
