@@ -16,10 +16,14 @@ sleep 1
 echo "          - Secure SSH with Fail2Ban (brute-force protection)"
 sleep 1
 echo "          - Disable root SSH login"
-sleep 2
 echo
-echo "This is built for CentOS 7, if you are using any other yum-based distribution, proceed with caution!"
-sleep 3
+sleep 2
+echo "IMPORTANT - The use of this script does not in any way gaurantee the security of your server, it simply automates the hardening of it."
+echo "Passwords provided should be complex, updated regularly and never shared - key-based access is even more secure, and advised."
+echo
+sleep 4
+echo "This script is built for CentOS 7, if you are using any other yum-based distribution, proceed with caution!"
+sleep 1
 echo
 echo 'You have been warned....'
 sleep 3
@@ -28,7 +32,7 @@ echo '=============================================================='
 echo
 echo 'First, let's create you a sudo user, so we can stop using root!'
 echo
-sleep 3
+sleep 2
 if [ $(id -u) -eq 0 ]; then
         read -p "Enter username : " username
         read -s -p "Enter password : " password
@@ -115,7 +119,4 @@ echo
 sleep 3
 echo "Thanks for using Matt's lockdown script!"
 echo
-echo "May your server ever go unhacked.."
-echo "          - Matt"
-echop
 sleep 10
