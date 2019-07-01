@@ -16,10 +16,15 @@ sleep 1
 echo "          - Secure SSH with Fail2Ban (brute-force protection)"
 sleep 1
 echo "          - Disable root SSH login"
+sleep 1
+echo "          - Install anti-virus and root-kit detection and configure weekly scans (ClamAV + RkHunter)"
 echo
 sleep 2
-echo "IMPORTANT - The use of this script does not in any way guarantee the security of your server, it simply automates the hardening of it."
-echo "Passwords provided should be complex, updated regularly and never shared - key-based access is even more secure, and advised."
+echo "IMPORTANT:"
+echo "The use of this script does not in any way guarantee the security of your server, it simply automates the hardening of it."
+echo
+echo "Passwords should always be complex, updated regularly and never shared."
+echo "Key-based access is even more secure, and highly advised."
 echo
 sleep 4
 echo "This script is built for CentOS 7, if you are using any other yum-based distribution, proceed with caution!"
