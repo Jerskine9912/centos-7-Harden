@@ -100,11 +100,35 @@ systemctl enable fail2ban
 echo
 echo '=============================================================='
 echo
-echo "Finally, I'm going to disable root login via SSH for this system..."
+echo "Now, I'm going to disable root login via SSH for this system..."
 echo
 sleep 4
 sed -i "s/#PermitRootLogin yes/PermitRootLogin no/g" /etc/ssh/sshd_config
 systemctl restart sshd
+echo '=============================================================='
+echo
+echo "Finally, let's wrap this up by installing anti-virus and root-kit removal tools...(ClamAV and RKHunter"
+echo
+echo 'This may take several minutes, do NOT cancel this process...'
+echo
+# ClamAV install
+yum -y install clamav-server clamav-data clamav-update clamav-filesystem clamav clamav-scanner-systemd clamav-devel clamav-lib clamav-server-systemd
+setsebool -P antivirus_can_scan_system 1
+setsebool -P clamd_use_jit 1
+sed -i -e "s/^Example/#Example/" /etc/clamd.d/scan.conf
+sudo sed -i -e "0,/^#LocalSocket/s/^#LocalSocket/LocalSocket/" /etc/clamd.d/scan.conf
+sed -i -e "s/^Example/#Example/" /etc/freshclam.conf
+freshclam
+systemctl start clamd@scan
+systemctl enable clamd@scan
+echo "#!/bin/bash
+clamscan --infected --recursive --exclude-dir="^/sys" /" > /etc/cron.weekly/weeklyscan.sh
+chmod -x /etc/cron.weekly/weeklyscan.sh
+# RKHunter install
+yum install rkhunter -y -q
+rkhunter --update
+rkhunter --propupd
+sed -i "s/ALLOW_SSH_ROOT_USER=unset/ALLOW_SSH_ROOT_USER=no/g" /etc/rkhunter.conf
 echo '=============================================================='
 echo
 echo "OK, We're done! Remember, root is now disabled, you'll need to reconnect using:"
