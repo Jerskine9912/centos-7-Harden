@@ -17,7 +17,7 @@ echo "          - Secure SSH with Fail2Ban (brute-force protection)"
 sleep 1
 echo "          - Disable root SSH login"
 sleep 1
-echo "          - Install anti-virus and root-kit detection and configure weekly scans (ClamAV + RkHunter)"
+echo "          - Install and configure anti-virus and root-kit detection (ClamAV + RkHunter)"
 echo
 sleep 2
 echo "IMPORTANT:"
@@ -117,13 +117,13 @@ echo
 echo 'This may take several minutes, do NOT cancel this process...'
 echo
 # ClamAV install
-yum -y -q install clamav-server clamav-data clamav-update clamav-filesystem clamav clamav-scanner-systemd clamav-devel clamav-lib clamav-server-systemd
+yum install clamav-server clamav-data clamav-update clamav-filesystem clamav clamav-scanner-systemd clamav-devel clamav-lib clamav-server-systemd -y -q
 setsebool -P antivirus_can_scan_system 1
 setsebool -P clamd_use_jit 1
 sed -i -e "s/^Example/#Example/" /etc/clamd.d/scan.conf
 sudo sed -i -e "0,/^#LocalSocket/s/^#LocalSocket/LocalSocket/" /etc/clamd.d/scan.conf
 sed -i -e "s/^Example/#Example/" /etc/freshclam.conf
-freshclam
+freshclam --quiet
 systemctl start clamd@scan
 systemctl enable clamd@scan
 echo "#!/bin/bash
