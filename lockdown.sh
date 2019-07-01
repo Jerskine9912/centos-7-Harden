@@ -112,7 +112,7 @@ sed -i "s/#PermitRootLogin yes/PermitRootLogin no/g" /etc/ssh/sshd_config
 systemctl restart sshd
 echo '=============================================================='
 echo
-echo "Finally, let's wrap this up by installing anti-virus and root-kit removal tools...(ClamAV and RKHunter"
+echo "Finally, let's wrap this up by installing anti-virus and root-kit removal tools...(ClamAV and RkHunter)"
 echo
 echo 'This may take several minutes, do NOT cancel this process...'
 echo
@@ -134,6 +134,7 @@ yum install rkhunter -y -q
 rkhunter --update
 rkhunter --propupd
 sed -i "s/ALLOW_SSH_ROOT_USER=unset/ALLOW_SSH_ROOT_USER=no/g" /etc/rkhunter.conf
+echo
 echo '=============================================================='
 echo
 echo "OK, We're done! Remember, root is now disabled, you'll need to reconnect using:"
@@ -143,9 +144,6 @@ echo "          password: $password"
 echo "          port number: $ssh"
 echo
 echo "If you accidentally ban your IP through multiple failed login attempts, you'll need to run the below via console:"
+echo
 echo "          fail2ban-client set sshd unbanip your.ip.address.here"
 echo
-sleep 3
-echo "Thanks for using Matt's lockdown script!"
-echo
-sleep 10
