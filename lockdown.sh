@@ -30,7 +30,7 @@ sleep 3
 echo
 echo '=============================================================='
 echo
-echo 'First, let's create you a sudo user, so we can stop using root!'
+echo "First, let's create you a sudo user, so we can stop using root!"
 echo
 sleep 2
 if [ $(id -u) -eq 0 ]; then
@@ -122,7 +122,7 @@ freshclam
 systemctl start clamd@scan
 systemctl enable clamd@scan
 echo "#!/bin/bash
-clamscan --infected --recursive --exclude-dir="^/sys" /" > /etc/cron.weekly/weeklyscan.sh
+clamscan --infected --recursive --exclude-dir='^/sys' /" > /etc/cron.weekly/weeklyscan.sh
 chmod -x /etc/cron.weekly/weeklyscan.sh
 # RKHunter install
 yum install rkhunter -y -q
