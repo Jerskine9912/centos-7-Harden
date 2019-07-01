@@ -13,9 +13,9 @@ echo "          - Install and configure automatic updates"
 sleep 1
 echo "          - Move the default SSH port to one of your choosing"
 sleep 1
-echo "          - Disable root SSH login"
-sleep 1
 echo "          - Secure SSH with Fail2Ban (brute-force protection)"
+sleep 1
+echo "          - Disable root SSH login"
 sleep 2
 echo
 echo "This is built for CentOS 7, if you are using any other yum-based distribution, proceed with caution!"
@@ -74,7 +74,7 @@ sleep 4
 read -p "Enter a port number to move SSH to (793 is advised) : " ssh
 sed -i "s/#Port 22/Port $ssh/g" /etc/ssh/sshd_config
 echo
-service sshd restart
+systemctl restart sshd
 echo
 echo '=============================================================='
 echo
@@ -86,10 +86,25 @@ cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
 sed -i 's/bantime  = 600/bantime  = 3600/g' /etc/fail2ban/jail.local
 sed -i 's/maxretry = 5/maxretry = 3/g' /etc/fail2ban/jail.local
 echo
-sed -n '/#filter = sshd-aggressive/a enabled = true' /etc/fail2ban/jail.local
+sed -i '/sshd-aggressive/a enabled = true' /etc/fail2ban/jail.local
+sed -i "s/port    = ssh/port    = $ssh/g" /etc/fail2ban/jail.local
 echo
 systemctl restart fail2ban
 systemctl enable fail2ban
-echo "And we're there! That's one secure system you have"
 echo
-echo "Remember, to SSH into this server you'll have to log in as $username on SSH port $ssh"
+echo '=============================================================='
+echo
+echo "Finally, I'm going to disable root login via SSH for this system..."
+echo
+sleep 4
+sed -i "s/#PermitRootLogin yes/PermitRootLogin no/g" /etc/ssh/sshd_config
+systemctl restart sshd
+echo '=============================================================='
+echo
+echo "OK, We're done! Remember, root is now disabled, you'll need to reconnect using:"
+echo
+echo "          username: $username"
+echo "          password: $password"
+echo "          port number: $ssh"
+echo
+sleep 10
