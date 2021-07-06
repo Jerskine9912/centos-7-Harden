@@ -1,8 +1,6 @@
 # Lockdown
 # This script automates the hardening of CentOS servers.
 
-# I appreciate any and all feature requests, submit them and I will actively work to incorporate those features.
-
 # Currently, the script: 
 #   - Creates a new sudo user
 #   - Updates OS and installs/configures auto-updates
