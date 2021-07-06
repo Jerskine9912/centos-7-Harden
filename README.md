@@ -9,3 +9,4 @@
 #   - Moves the SSH port to a new allocation
 #   - Protects SSH from brute-force with Fail2Ban
 #   - Removes root SSH access
+#   - Installs and configures anti-virus and root-kit protection
