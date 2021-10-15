@@ -14,7 +14,7 @@ This script automates the hardening of CentOS 7 servers.
 1. Use wget to download lockdown.sh to your CentOS 7 machine
 2. Allow the running of the script with - chmod -x ~/lockdown.sh
 3. Execute the script - sudo bash ~/lockdown.sh
-4. This is not a headless installation, you will need to attend and input variables
+4. This is not a headless installation, you will need to attend and input the desired variables
 
 # Issues/Bugs
 Please report any issues or bugs to the Github feed and I'll address them ASAP
