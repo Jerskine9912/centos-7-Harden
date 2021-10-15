@@ -1,11 +1,11 @@
 #!/bin/bash
 clear
-echo "Welcome to Matt's lockdown script for CentOS7!"
+echo "Welcome to the CentOS 7 Lockdown hardening script!"
 sleep 3
 echo
 echo "This script will:"
 sleep 1
-echo "          - Create you a sudo user"
+echo "          - Create a sudo user"
 sleep 1
 echo "          - Update your OS and packages"
 sleep 1
@@ -63,7 +63,7 @@ fi
 echo
 echo '=============================================================='
 echo
-echo 'Now, let me bring your system up to date and configure automatic updates...'
+echo 'Now, let's bring your system up to date and configure automatic updates...'
 echo
 echo 'This may take several minutes, do NOT cancel this process...'
 echo
@@ -82,14 +82,14 @@ echo
 echo "OK, that's done - We're now going to obfuscate your SSH port (make it harder to find)."
 echo
 sleep 4
-read -p "Enter a port number to move SSH to (793 is advised) : " ssh
+read -p "Enter a port number to move SSH to (or enter 22 if you do not wish to move it) : " ssh
 sed -i "s/#Port 22/Port $ssh/g" /etc/ssh/sshd_config
 echo
 systemctl restart sshd
 echo
 echo '=============================================================='
 echo
-echo "Getting there, now I'll install and configure Fail2Ban to protect your SSH port number from brute-force attacks."
+echo "Getting there, now we'll install and configure Fail2Ban to protect your SSH port number from brute-force attacks."
 echo
 sleep 5
 yum install fail2ban -y -q
@@ -105,7 +105,7 @@ systemctl enable fail2ban
 echo
 echo '=============================================================='
 echo
-echo "Now, I'm going to disable root login via SSH for this system..."
+echo "Now, we'll disable root login via SSH for this system..."
 echo
 sleep 4
 sed -i "s/#PermitRootLogin yes/PermitRootLogin no/g" /etc/ssh/sshd_config
