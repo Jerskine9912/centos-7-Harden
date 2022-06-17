@@ -1,6 +1,6 @@
 #!/bin/bash
 clear
-echo "Welcome to the CentOS 7 Lockdown hardening script!"
+echo "Welcome to the Enterprise Linux 8 Lockdown hardening script!"
 sleep 3
 echo
 echo "This script will:"
@@ -27,7 +27,7 @@ echo "Passwords should always be complex, updated regularly and never shared."
 echo "Key-based access is even more secure, and highly advised."
 echo
 sleep 4
-echo "This script is built for CentOS 7, if you are using any other yum-based distribution, proceed with caution!"
+echo "This script is built for Enterprise Linux 8"
 sleep 1
 echo
 echo 'You have been warned....'
